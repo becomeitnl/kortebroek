@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Korte Broek Weer?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Is het vandaag korte broeken weer?</h1>
+
+    <section id="result" class="card" aria-live="polite">
+      <div id="emoji" class="emoji">⏳</div>
+      <p id="verdict" class="verdict">Even kijken…</p>
+      <p id="reason" class="reason"></p>
+    </section>
+
+    <section id="details" class="card details" hidden>
+      <h2 id="place"></h2>
+      <dl>
+        <div><dt>Max. temperatuur</dt><dd id="tmax"></dd></div>
+        <div><dt>Voelt als</dt><dd id="feels"></dd></div>
+        <div><dt>Kans op regen</dt><dd id="rain"></dd></div>
+        <div><dt>Wind</dt><dd id="wind"></dd></div>
+      </dl>
+    </section>
+
+    <form id="city-form" class="city-form">
+      <label for="city">Andere plaats:</label>
+      <input id="city" name="city" type="text" placeholder="bijv. Utrecht" autocomplete="address-level2">
+      <button type="submit">Check</button>
+      <button type="button" id="locate">📍 Mijn locatie</button>
+    </form>
+
+    <footer>
+      Weerdata: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>
+    </footer>
+  </main>
+  <script src="kortebroek.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
