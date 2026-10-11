@@ -12,9 +12,9 @@ Op basis van de verwachting voor vandaag (zie `kortebroek.js`):
 
 | Oordeel | Wanneer |
 |---|---|
-| 🩳 Ja | gevoelstemperatuur ≥ 20°C, regenkans ≤ 50%, wind ≤ 40 km/u |
-| 🤔 Twijfel | warm genoeg, maar één bezwaar (wat regen, wind, of net onder de 20°C) |
-| 👖 Nee | gevoelstemperatuur < 17°C, regenkans ≥ 80%, of meerdere bezwaren |
+| 🩳 Ja | gevoelstemperatuur ≥ 15°C, regenkans ≤ 50%, wind ≤ 40 km/u |
+| 🤔 Twijfel | warm genoeg, maar één bezwaar (wat regen, wind, of net onder de 15°C) |
+| 👖 Nee | gevoelstemperatuur < 12°C, regenkans ≥ 80%, of meerdere bezwaren |
 
 De drempels staan bovenaan in `kortebroek.js` en zijn makkelijk aan te passen.
 

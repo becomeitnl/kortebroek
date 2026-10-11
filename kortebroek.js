@@ -2,8 +2,8 @@
 // Los van de pagina gehouden zodat het ook te testen is met Node.
 
 const DREMPELS = {
-  minTemp: 20,      // °C, gevoelstemperatuur overdag
-  twijfelTemp: 17,  // °C, daaronder is het sowieso lange broek
+  minTemp: 15,      // °C, gevoelstemperatuur overdag
+  twijfelTemp: 12,  // °C, daaronder is het sowieso lange broek
   maxRegenkans: 50, // %
   maxWind: 40,      // km/u
 };
