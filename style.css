@@ -86,5 +86,9 @@ h2 { font-size: 1.1rem; margin: 0 0 12px; }
   cursor: pointer;
 }
 
+.grens label { display: block; margin-bottom: 8px; }
+.grens strong { white-space: nowrap; }
+.grens input { width: 100%; accent-color: var(--nee); }
+
 footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 0.85rem; }
 footer a { color: inherit; }

@@ -16,4 +16,10 @@ for (const [weer, verwacht] of gevallen) {
   const { oordeel, reden } = korteBroekOordeel(weer);
   assert.strictEqual(oordeel, verwacht, `${JSON.stringify(weer)} → ${oordeel} (${reden})`);
 }
-console.log(`Alle ${gevallen.length} tests geslaagd.`);
+// Eigen grens: wie het snel koud heeft (20°C) of juist niet (10°C)
+const weer = { gevoelTemp: 17, regenkans: 10, wind: 10 };
+assert.strictEqual(korteBroekOordeel(weer, 20).oordeel, "nee");
+assert.strictEqual(korteBroekOordeel(weer, 18).oordeel, "twijfel");
+assert.strictEqual(korteBroekOordeel(weer, 10).oordeel, "ja");
+
+console.log(`Alle ${gevallen.length + 3} tests geslaagd.`);

@@ -8,6 +8,13 @@ const TEKST = {
 
 const $ = (id) => document.getElementById(id);
 
+let laatsteWeer = null;
+let minTemp = DREMPELS.minTemp;
+try {
+  const bewaard = Number(localStorage.getItem("minTemp"));
+  if (bewaard) minTemp = bewaard;
+} catch {}
+
 async function haalWeer(lat, lon) {
   const url = new URL("https://api.open-meteo.com/v1/forecast");
   url.search = new URLSearchParams({
@@ -49,17 +56,23 @@ function toonFout(err) {
   $("verdict").textContent = "Oeps";
   $("reason").textContent = err.message;
   $("details").hidden = true;
+  laatsteWeer = null;
+}
+
+function toonOordeel() {
+  const { oordeel, reden } = korteBroekOordeel(laatsteWeer, minTemp);
+  $("emoji").textContent = TEKST[oordeel].emoji;
+  $("verdict").textContent = TEKST[oordeel].titel;
+  $("reason").textContent = reden;
+  $("result").dataset.oordeel = oordeel;
 }
 
 async function check(plaats) {
   toonLaden();
   try {
     const weer = await haalWeer(plaats.lat, plaats.lon);
-    const { oordeel, reden } = korteBroekOordeel(weer);
-    $("emoji").textContent = TEKST[oordeel].emoji;
-    $("verdict").textContent = TEKST[oordeel].titel;
-    $("reason").textContent = reden;
-    $("result").dataset.oordeel = oordeel;
+    laatsteWeer = weer;
+    toonOordeel();
 
     $("place").textContent = plaats.naam;
     $("tmax").textContent = `${Math.round(weer.temp)}°C`;
@@ -99,6 +112,15 @@ $("city-form").addEventListener("submit", async (e) => {
 $("locate").addEventListener("click", () => {
   try { localStorage.removeItem("plaats"); } catch {}
   gebruikLocatie();
+});
+
+$("grens").value = minTemp;
+$("grens-waarde").textContent = `${minTemp}°C`;
+$("grens").addEventListener("input", (e) => {
+  minTemp = Number(e.target.value);
+  $("grens-waarde").textContent = `${minTemp}°C`;
+  try { localStorage.setItem("minTemp", minTemp); } catch {}
+  if (laatsteWeer) toonOordeel();
 });
 
 let opgeslagen = null;
